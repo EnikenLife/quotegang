@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 import bannerLogo from "@/assets/banner.png";
-import { fetchGuild, formatXp, skinHead } from "@/lib/wynncraft";
+import { fetchGuild, formatXp, skinHead, isGoldenName } from "@/lib/wynncraft";
 import { PlayerDialog } from "@/components/PlayerDialog";
 import { ApplyCTA } from "@/components/ApplyCTA";
 
@@ -92,7 +92,7 @@ function Home() {
               key={m.uuid}
               type="button"
               onClick={() => setSelected({ username: m.username, uuid: m.uuid })}
-              className="group relative overflow-hidden rounded-xl border border-border bg-card/40 p-5 text-left shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:ring-aurora"
+              className="group relative overflow-hidden rounded-xl border border-border bg-card/40 p-5 text-left shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:rin[...]
             >
               <span className="absolute right-4 top-4 font-mono text-xs text-muted-foreground">#{i + 1}</span>
               <div className="flex items-center gap-4">
@@ -106,7 +106,9 @@ function Home() {
                   style={{ imageRendering: "pixelated" }}
                 />
                 <div>
-                  <p className="font-mono text-base font-semibold">{m.username}</p>
+                  <p className={`font-mono text-base font-semibold ${isGoldenName(m.username) ? "text-amber-400" : ""}`}>
+                    {m.displayName || m.username}
+                  </p>
                   <p className="text-[10px] uppercase tracking-[0.2em] text-primary">{m.rank}</p>
                   <p className="mt-1 font-mono text-sm text-aurora">{formatXp(m.contributed)} XP</p>
                 </div>
