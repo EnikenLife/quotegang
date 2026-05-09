@@ -90,12 +90,11 @@ function Home() {
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {top.map((m, i) => (
-            <a
+            <button
               key={m.uuid}
-              href={`https://wynncraft.com/stats/player/${m.username}`}
-              target="_blank"
-              rel="noreferrer"
-              className="group relative overflow-hidden rounded-xl border border-border bg-card/40 p-5 shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:ring-aurora"
+              type="button"
+              onClick={() => setSelected({ username: m.username, uuid: m.uuid })}
+              className="group relative overflow-hidden rounded-xl border border-border bg-card/40 p-5 text-left shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:ring-aurora"
             >
               <span className="absolute right-4 top-4 font-mono text-xs text-muted-foreground">#{i + 1}</span>
               <div className="flex items-center gap-4">
@@ -114,7 +113,7 @@ function Home() {
                   <p className="mt-1 font-mono text-sm text-aurora">{formatXp(m.contributed)} XP</p>
                 </div>
               </div>
-            </a>
+            </button>
           ))}
           {top.length === 0 && Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className="h-[112px] animate-pulse rounded-xl border border-border bg-card/30" />
