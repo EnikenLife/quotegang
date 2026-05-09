@@ -29,6 +29,7 @@ function MembersPage() {
   const { data, isLoading, error } = useQuery({ queryKey: ["guild"], queryFn: fetchGuild, staleTime: 60_000 });
   const [q, setQ] = useState("");
   const [rankFilter, setRankFilter] = useState<Rank | "all">("all");
+  const [selected, setSelected] = useState<{ username: string; uuid: string } | null>(null);
 
   const filtered = useMemo(() => {
     if (!data) return [];
