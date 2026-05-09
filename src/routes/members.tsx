@@ -116,6 +116,12 @@ function MembersPage() {
           {filtered.length === 0 && <p className="mt-12 text-center text-muted-foreground">No members match.</p>}
         </>
       )}
+
+      <PlayerDialog
+        username={selected?.username ?? null}
+        uuid={selected?.uuid}
+        onOpenChange={(o) => !o && setSelected(null)}
+      />
     </div>
   );
 }
