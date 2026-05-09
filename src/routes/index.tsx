@@ -22,6 +22,7 @@ export const Route = createFileRoute("/")({
 function Home() {
   const { data } = useQuery({ queryKey: ["guild"], queryFn: fetchGuild, staleTime: 60_000 });
   const top = data?.members.slice(0, 6) ?? [];
+  const [selected, setSelected] = useState<{ username: string; uuid: string } | null>(null);
 
   return (
     <>
