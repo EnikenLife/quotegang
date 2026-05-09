@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 import bannerLogo from "@/assets/banner.png";
 import { fetchGuild, formatXp, skinHead } from "@/lib/wynncraft";
+import { PlayerDialog } from "@/components/PlayerDialog";
 
 export const Route = createFileRoute("/")({
   head: () => ({
