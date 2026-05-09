@@ -77,11 +77,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "The Quote Gang [Next] — Wynncraft Guild" },
       { name: "description", content: "Official site of The Quote Gang, a Wynncraft guild tagged [Next]." },
       { name: "author", content: "The Quote Gang" },
-      { property: "og:title", content: "The Quote Gang [Next]" },
+      { property: "og:title", content: "The Quote Gang [Next] — Wynncraft Guild" },
       { property: "og:description", content: "Official site of The Quote Gang, a Wynncraft guild tagged [Next]." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "The Quote Gang [Next] — Wynncraft Guild" },
+      { name: "twitter:description", content: "Official site of The Quote Gang, a Wynncraft guild tagged [Next]." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/02ab2140-0a68-43b2-88ec-3e51ce7a048f/id-preview-61ad654f--66870dd2-5192-4a1c-9913-6f28a7374f2c.lovable.app-1778337644416.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/02ab2140-0a68-43b2-88ec-3e51ce7a048f/id-preview-61ad654f--66870dd2-5192-4a1c-9913-6f28a7374f2c.lovable.app-1778337644416.png" },
     ],
     links: [
       {
