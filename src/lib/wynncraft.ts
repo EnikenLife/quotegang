@@ -1,5 +1,6 @@
 export type Member = {
   username: string;
+  displayName?: string;
   uuid: string;
   rank: Rank;
   contributed: number;
@@ -12,6 +13,18 @@ export type Member = {
 export type Rank = "owner" | "chief" | "strategist" | "captain" | "recruiter" | "recruit";
 
 export const RANK_ORDER: Rank[] = ["owner", "chief", "strategist", "captain", "recruiter", "recruit"];
+
+// Display name overrides
+const DISPLAY_NAME_OVERRIDES: Record<string, string> = {
+  "Amulth": "Almuj",
+};
+
+// Golden names
+const GOLDEN_NAMES = new Set(["bananadiehard", "rhythhh"]);
+
+export function isGoldenName(username: string): boolean {
+  return GOLDEN_NAMES.has(username.toLowerCase());
+}
 
 export type GuildData = {
   name: string;
@@ -40,6 +53,7 @@ export async function fetchGuild(): Promise<GuildData> {
       if (m.online) online++;
       members.push({
         username,
+        displayName: DISPLAY_NAME_OVERRIDES[username],
         uuid: m.uuid,
         rank,
         contributed: m.contributed ?? 0,
