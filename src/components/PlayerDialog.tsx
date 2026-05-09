@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { fetchPlayerData } from "@/lib/player.functions";
-import { formatXp, skinHead } from "@/lib/wynncraft";
+import { formatXp } from "@/lib/wynncraft";
 import { ExternalLink, Copy, Check, Circle, Clock, Calendar, Swords, Skull, Trophy, Map, Crown, Star, Activity } from "lucide-react";
 import { useState } from "react";
 
