@@ -9,13 +9,30 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as MembersRouteImport } from './routes/members'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as JoinRouteImport } from './routes/join'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedMyApplicationRouteImport } from './routes/_authenticated/my-application'
+import { Route as AuthenticatedApplyRouteImport } from './routes/_authenticated/apply'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/_admin'
+import { Route as AuthenticatedAdminApplicationsRouteImport } from './routes/_authenticated/_admin/applications'
 
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MembersRoute = MembersRouteImport.update({
   id: '/members',
   path: '/members',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JoinRoute = JoinRouteImport.update({
@@ -23,49 +40,135 @@ const JoinRoute = JoinRouteImport.update({
   path: '/join',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedMyApplicationRoute =
+  AuthenticatedMyApplicationRouteImport.update({
+    id: '/my-application',
+    path: '/my-application',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedApplyRoute = AuthenticatedApplyRouteImport.update({
+  id: '/apply',
+  path: '/apply',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/_admin',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedAdminApplicationsRoute =
+  AuthenticatedAdminApplicationsRouteImport.update({
+    id: '/applications',
+    path: '/applications',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/join': typeof JoinRoute
+  '/login': typeof LoginRoute
   '/members': typeof MembersRoute
+  '/signup': typeof SignupRoute
+  '/apply': typeof AuthenticatedApplyRoute
+  '/my-application': typeof AuthenticatedMyApplicationRoute
+  '/applications': typeof AuthenticatedAdminApplicationsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/join': typeof JoinRoute
+  '/login': typeof LoginRoute
   '/members': typeof MembersRoute
+  '/signup': typeof SignupRoute
+  '/apply': typeof AuthenticatedApplyRoute
+  '/my-application': typeof AuthenticatedMyApplicationRoute
+  '/applications': typeof AuthenticatedAdminApplicationsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/join': typeof JoinRoute
+  '/login': typeof LoginRoute
   '/members': typeof MembersRoute
+  '/signup': typeof SignupRoute
+  '/_authenticated/_admin': typeof AuthenticatedAdminRouteWithChildren
+  '/_authenticated/apply': typeof AuthenticatedApplyRoute
+  '/_authenticated/my-application': typeof AuthenticatedMyApplicationRoute
+  '/_authenticated/_admin/applications': typeof AuthenticatedAdminApplicationsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/join' | '/members'
+  fullPaths:
+    | '/'
+    | '/join'
+    | '/login'
+    | '/members'
+    | '/signup'
+    | '/apply'
+    | '/my-application'
+    | '/applications'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/join' | '/members'
-  id: '__root__' | '/' | '/join' | '/members'
+  to:
+    | '/'
+    | '/join'
+    | '/login'
+    | '/members'
+    | '/signup'
+    | '/apply'
+    | '/my-application'
+    | '/applications'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/join'
+    | '/login'
+    | '/members'
+    | '/signup'
+    | '/_authenticated/_admin'
+    | '/_authenticated/apply'
+    | '/_authenticated/my-application'
+    | '/_authenticated/_admin/applications'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   JoinRoute: typeof JoinRoute
+  LoginRoute: typeof LoginRoute
   MembersRoute: typeof MembersRoute
+  SignupRoute: typeof SignupRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/members': {
       id: '/members'
       path: '/members'
       fullPath: '/members'
       preLoaderRoute: typeof MembersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/join': {
@@ -75,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JoinRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -82,13 +192,71 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/my-application': {
+      id: '/_authenticated/my-application'
+      path: '/my-application'
+      fullPath: '/my-application'
+      preLoaderRoute: typeof AuthenticatedMyApplicationRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/apply': {
+      id: '/_authenticated/apply'
+      path: '/apply'
+      fullPath: '/apply'
+      preLoaderRoute: typeof AuthenticatedApplyRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/_admin': {
+      id: '/_authenticated/_admin'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/_admin/applications': {
+      id: '/_authenticated/_admin/applications'
+      path: '/applications'
+      fullPath: '/applications'
+      preLoaderRoute: typeof AuthenticatedAdminApplicationsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
   }
 }
 
+interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminApplicationsRoute: typeof AuthenticatedAdminApplicationsRoute
+}
+
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminApplicationsRoute: AuthenticatedAdminApplicationsRoute,
+}
+
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
+
+interface AuthenticatedRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
+  AuthenticatedApplyRoute: typeof AuthenticatedApplyRoute
+  AuthenticatedMyApplicationRoute: typeof AuthenticatedMyApplicationRoute
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
+  AuthenticatedApplyRoute: AuthenticatedApplyRoute,
+  AuthenticatedMyApplicationRoute: AuthenticatedMyApplicationRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
   JoinRoute: JoinRoute,
+  LoginRoute: LoginRoute,
   MembersRoute: MembersRoute,
+  SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
