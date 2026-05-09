@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MessageCircle, Swords, Sparkles, Users } from "lucide-react";
+import { ApplyCTA } from "@/components/ApplyCTA";
 
 export const Route = createFileRoute("/join")({
   head: () => ({
@@ -41,18 +42,19 @@ function JoinPage() {
       <div className="mt-12 overflow-hidden rounded-2xl border border-border bg-card/50 p-8 shadow-card md:p-12">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div>
-            <h2 className="text-3xl font-bold">Jump in the Discord</h2>
-            <p className="mt-2 text-muted-foreground">Where everything actually happens.</p>
+            <h2 className="text-3xl font-bold">Apply directly</h2>
+            <p className="mt-2 text-muted-foreground">Or jump in the Discord and say hi.</p>
           </div>
-          <a
-            href="https://discord.gg/hvewPAyW6"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg bg-aurora px-6 py-4 font-medium text-primary-foreground shadow-glow transition-transform hover:scale-[1.03]"
-          >
-            <MessageCircle className="h-5 w-5" />
-            discord.gg/hvewPAyW6
-          </a>
+          <div className="flex flex-wrap gap-3">
+            <ApplyCTA />
+            <a
+              href="https://discord.gg/hvewPAyW6"
+              target="_blank" rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border border-border bg-card/40 px-6 py-3 font-medium text-foreground hover:border-primary/60"
+            >
+              <MessageCircle className="h-5 w-5" /> Discord
+            </a>
+          </div>
         </div>
       </div>
 

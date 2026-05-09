@@ -15,7 +15,7 @@ export function SiteHeader() {
     { to: "/members", label: "Members" },
     { to: "/join", label: "Join" },
     ...(session ? [{ to: "/my-application", label: "My App" }] : []),
-    ...(isAdmin ? [{ to: "/admin/applications", label: "View Applications" }] : []),
+    ...(isAdmin ? [{ to: "/applications", label: "View Applications" }] : []),
   ] as const;
 
   const head = profile

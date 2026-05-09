@@ -6,6 +6,7 @@ import heroImg from "@/assets/hero.jpg";
 import bannerLogo from "@/assets/banner.png";
 import { fetchGuild, formatXp, skinHead } from "@/lib/wynncraft";
 import { PlayerDialog } from "@/components/PlayerDialog";
+import { ApplyCTA } from "@/components/ApplyCTA";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -48,12 +49,9 @@ function Home() {
             and even more questionable quotes. Built different. Tagged <span className="font-mono text-foreground">[Next]</span>.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <Link
-              to="/join"
-              className="inline-flex items-center gap-2 rounded-lg bg-aurora px-6 py-3 font-medium text-primary-foreground shadow-glow transition-transform hover:scale-[1.03]"
-            >
-              Join the gang <ArrowRight className="h-4 w-4" />
-            </Link>
+            <ApplyCTA>
+              Apply now <ArrowRight className="h-4 w-4" />
+            </ApplyCTA>
             <Link
               to="/members"
               className="inline-flex items-center gap-2 rounded-lg border border-border bg-card/40 px-6 py-3 font-medium text-foreground transition-colors hover:border-primary/60 hover:bg-card/70"
