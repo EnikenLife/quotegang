@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
+import bannerLogo from "@/assets/banner.png";
 import { fetchGuild, formatXp, skinHead } from "@/lib/wynncraft";
 
 export const Route = createFileRoute("/")({
@@ -38,10 +39,7 @@ function Home() {
             <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-glow" />
             Wynncraft Guild · [Next]
           </span>
-          <h1 className="font-display text-6xl font-bold leading-[0.95] md:text-8xl lg:text-9xl">
-            The <span className="text-aurora">Quote</span>
-            <br /> Gang.
-          </h1>
+          <img src={bannerLogo} alt="The Quote Gang" className="mb-2 w-full max-w-2xl drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]" />
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
             A Wynncraft guild forged in late-night raids, questionable strategies,
             and even more questionable quotes. Built different. Tagged <span className="font-mono text-foreground">[Next]</span>.
