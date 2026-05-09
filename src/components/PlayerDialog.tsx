@@ -231,5 +231,3 @@ function Breakdown({ title, total, list }: { title: string; total: number; list?
   );
 }
 
-// Suppress unused import warnings
-void skinHead;
