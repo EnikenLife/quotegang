@@ -1,6 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import bannerLogo from "@/assets/banner.png";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -16,13 +17,8 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 glass">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link to="/" className="group flex items-center gap-3">
-          <span className="grid h-9 w-9 place-items-center rounded-md bg-aurora font-display text-sm font-bold text-primary-foreground shadow-glow">
-            N
-          </span>
-          <div className="flex flex-col leading-tight">
-            <span className="font-display text-base tracking-widest">THE QUOTE GANG</span>
-            <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[Next] · Wynncraft</span>
-          </div>
+          <img src={bannerLogo} alt="The Quote Gang" className="h-10 w-auto md:h-12" />
+          <span className="hidden text-[10px] uppercase tracking-[0.3em] text-muted-foreground sm:block">[Next] · Wynncraft</span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">

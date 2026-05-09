@@ -27,10 +27,10 @@ export type GuildData = {
   members: Member[];
 };
 
+import { fetchGuildData } from "./guild.functions";
+
 export async function fetchGuild(): Promise<GuildData> {
-  const res = await fetch("https://api.wynncraft.com/v3/guild/prefix/Next");
-  if (!res.ok) throw new Error("Failed to load guild");
-  const data = await res.json();
+  const data = await fetchGuildData();
 
   const members: Member[] = [];
   let online = 0;
