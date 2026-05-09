@@ -41,8 +41,8 @@ function relTime(iso?: string) {
 export function PlayerDialog({ username, uuid, onOpenChange }: Props) {
   const open = !!username;
   const { data, isLoading, error } = useQuery({
-    queryKey: ["player", username],
-    queryFn: () => fetchPlayerData({ data: { username: username! } }),
+    queryKey: ["player", uuid ?? username],
+    queryFn: () => fetchPlayerData({ data: { identifier: uuid ?? username! } }),
     enabled: open,
     staleTime: 60_000,
   });
