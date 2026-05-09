@@ -81,12 +81,11 @@ function MembersPage() {
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((m) => (
-              <a
+              <button
                 key={m.uuid}
-                href={`https://wynncraft.com/stats/player/${m.username}`}
-                target="_blank"
-                rel="noreferrer"
-                className="group relative flex items-center gap-4 rounded-xl border border-border bg-card/40 p-4 shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:bg-card/70 hover:ring-aurora"
+                type="button"
+                onClick={() => setSelected({ username: m.username, uuid: m.uuid })}
+                className="group relative flex items-center gap-4 rounded-xl border border-border bg-card/40 p-4 text-left shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:bg-card/70 hover:ring-aurora"
               >
                 <div className="relative">
                   <img
@@ -103,9 +102,7 @@ function MembersPage() {
                   )}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2">
-                    <p className="truncate font-mono text-sm font-semibold text-foreground">{m.username}</p>
-                  </div>
+                  <p className="truncate font-mono text-sm font-semibold text-foreground">{m.username}</p>
                   <p className="text-[10px] uppercase tracking-[0.2em] text-primary">{RANK_LABEL[m.rank]}</p>
                   <p className="mt-1 text-xs text-muted-foreground">Joined {formatJoined(m.joined)}</p>
                 </div>
@@ -113,7 +110,7 @@ function MembersPage() {
                   <p className="font-mono text-sm font-bold text-aurora">{formatXp(m.contributed)}</p>
                   <p className="text-[10px] uppercase tracking-widest text-muted-foreground">XP</p>
                 </div>
-              </a>
+              </button>
             ))}
           </div>
           {filtered.length === 0 && <p className="mt-12 text-center text-muted-foreground">No members match.</p>}
