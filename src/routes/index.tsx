@@ -141,6 +141,12 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <PlayerDialog
+        username={selected?.username ?? null}
+        uuid={selected?.uuid}
+        onOpenChange={(o) => !o && setSelected(null)}
+      />
     </>
   );
 }
