@@ -25,7 +25,7 @@ function JoinPage() {
 
       <div className="mt-12 grid gap-4 md:grid-cols-2">
         <Step icon={MessageCircle} step="01" title="Join the Discord">
-          Tap the button below. Read the rules. Say hi in #introductions.
+          Tap the button below. Read the rules. Say hi in #general.
         </Step>
         <Step icon={Users} step="02" title="Meet the team">
           A chief or recruiter will ping you, ask your IGN and goals.
